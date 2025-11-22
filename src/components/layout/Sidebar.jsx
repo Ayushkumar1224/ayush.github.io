@@ -1,7 +1,7 @@
 import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { PROFILE_IMAGE } from "../../data/personal";
+import { PROFILE_IMAGE } from "src/data/personal.js";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
