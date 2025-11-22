@@ -1,4 +1,4 @@
-import profileImg from "/profile.webp";
+import profileImg from "/images/profile/profile.webp";
 
 export const PROFILE_IMAGE = profileImg;
 
