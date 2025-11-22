@@ -1,1 +1,3 @@
-export const PROFILE_IMAGE = "/images/profile/profile.webp";
+import profileImg from "../assets/images/profile.webp";
+
+export const PROFILE_IMAGE = profileImg;
