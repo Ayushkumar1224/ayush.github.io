@@ -1,15 +1,16 @@
-import ProjectCard from "../components/ProjectCard";
+import React from "react";
 import projects from "../data/projects";
+import ProjectCard from "../components/ProjectCard";
 
 export default function Projects() {
   return (
-    <div className="p-10">
-      <h2>Projects Page</h2>
-      <div className="grid gap-4 mt-4">
+    <main className="container py-12">
+      <h1 className="text-4xl font-bold mb-6">All Projects</h1>
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
-          <ProjectCard key={p.id} title={p.title} />
+          <ProjectCard key={p.id} project={p} />
         ))}
       </div>
-    </div>
+    </main>
   );
 }

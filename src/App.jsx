@@ -1,10 +1,6 @@
 import React from "react";
-import Router from "./router";
+import AnimatedRouter from "./router";
 
 export default function App() {
-  return (
-    <div className="min-h-screen">
-      <Router />
-    </div>
-  );
+  return <AnimatedRouter />;
 }
