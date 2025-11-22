@@ -7,13 +7,12 @@ export default function Hero() {
       {/* Profile Image */}
       <motion.img
         src={PROFILE_IMAGE}
-        alt={personal.name}
+        alt="Ayush Patel"
         className="w-48 h-48 rounded-full border-4 border-blue-500 shadow-xl object-cover"
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.7 }}
       />
-
       {/* Text */}
       <motion.div
         initial={{ x: 40, opacity: 0 }}
