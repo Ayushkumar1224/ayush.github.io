@@ -1,6 +1,6 @@
 // src/data/personal.js
 
-export const PROFILE_IMAGE = "/images/profile/profile.webp"; // relative to dist/index.html
+export const PROFILE_IMAGE = "profile.webp"; // relative to dist/index.html
 
 export const personal = {
   name: "Ayush Patel",
