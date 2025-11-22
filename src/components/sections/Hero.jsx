@@ -1,20 +1,44 @@
-import React from "react";
+import { motion } from "framer-motion";
 import { PROFILE_IMAGE } from "../../data/personal";
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col items-center text-center">
-      <img
+    <div className="flex flex-col md:flex-row items-center gap-10 w-full">
+      {/* Profile Image */}
+      <motion.img
         src={PROFILE_IMAGE}
         alt="Ayush Patel"
-        className="w-40 h-40 rounded-full border-4 border-blue-500 shadow-xl object-cover"
+        className="w-48 h-48 rounded-full border-4 border-blue-500 shadow-xl object-cover"
+        initial={{ scale: 0.7, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.7 }}
       />
 
-      <h1 className="mt-6 text-4xl font-bold text-white">Ayush Patel</h1>
+      {/* Text */}
+      <motion.div
+        initial={{ x: 40, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.7 }}
+        className="text-left"
+      >
+        <h1 className="text-5xl font-extrabold text-white">Ayush Patel</h1>
+        <p className="text-blue-300 mt-2 text-xl">
+          IT Specialist • Networking • Cloud • Automation
+        </p>
 
-      <p className="text-blue-200 mt-2">
-        IT Specialist • Networking • Cloud • Automation
-      </p>
-    </section>
+        <p className="mt-5 text-blue-200 max-w-xl">
+          Passionate about building secure, automated and scalable IT systems. I
+          love working on networking, system administration, cloud, DevOps and
+          modern tooling.
+        </p>
+
+        <a
+          href="#projects"
+          className="mt-6 inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-xl shadow-lg text-white font-medium"
+        >
+          View My Work
+        </a>
+      </motion.div>
+    </div>
   );
 }
