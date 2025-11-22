@@ -3,7 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  server: { port: 5173 },
-  build: { outDir: "dist" },
-  base: "/ayush.github.io/",
+  base: "/ayush.github.io/", // <-- important for project page
 });
