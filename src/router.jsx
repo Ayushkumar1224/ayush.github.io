@@ -6,13 +6,11 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export default function AnimatedRouter() {
   return (
     <>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <main className="container py-12">
-      <h1 className="text-3xl font-bold">Contact</h1>
-      <p className="mt-4 text-gray-300">
+    <main>
+      <h1 className="text-3xl font-bold mb-4">Contact</h1>
+      <p className="text-gray-300">
         Email:{" "}
         <a href="mailto:ayush23404@gmail.com" className="text-accent">
           ayush23404@gmail.com
