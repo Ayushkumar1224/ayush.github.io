@@ -1,6 +1,7 @@
 import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { PROFILE_IMAGE } from "../../data/personal";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Sidebar() {
       >
         {/* Profile Image */}
         <img
-          src="/images/profile.jpg"
+          src={PROFILE_IMAGE}
           alt="Ayush Patel"
           className="w-14 h-14 rounded-full border border-blue-500 object-cover shadow-lg"
         />
