@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import HeroCard from "../components/HeroCard";
+import HeroCard from "../components/sections/Hero";
 import projects from "../data/projects";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/sections/ProjectCard";
 
 function FloatingShapes() {
   return (
