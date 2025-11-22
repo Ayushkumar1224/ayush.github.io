@@ -1,1 +1,1 @@
-export const PROFILE_IMAGE = "./assets/images/profile.jpg";
+export const PROFILE_IMAGE = "/images/profile/profile.webp";
