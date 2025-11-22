@@ -64,7 +64,7 @@ export default function Sidebar() {
 
           {/* Resume */}
           <motion.a
-            href="/Ayush-Resume.pdf"
+            href="src\IT_Support Resume.pdf"
             target="_blank"
             className="group flex flex-col items-center gap-1 text-blue-400 hover:text-white transition"
             whileHover={{ scale: 1.15 }}
