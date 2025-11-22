@@ -5,5 +5,5 @@ export default defineConfig({
   plugins: [react()],
   server: { port: 5173 },
   build: { outDir: "dist" },
-  base: "/",
+  base: "/ayush.github.io/",
 });
