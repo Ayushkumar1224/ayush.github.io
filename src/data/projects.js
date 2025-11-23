@@ -8,7 +8,7 @@ const projects = [
       "/assets/images/projects/iot-blocker-1.webp",
       "/assets/images/projects/iot-blocker-2.webp",
     ],
-    repo: "https://github.com/Ayushkumar1224/iot-blocker",
+    repo: "https://github.com/Ayushkumar1224/",
     demo: "",
   },
   {
@@ -17,7 +17,7 @@ const projects = [
     short: "Packet Tracer & GNS3 labs across VLANs, routing and NAT.",
     tech: ["Cisco", "Packet Tracer"],
     images: ["/assets/images/projects/network-lab-topology.webp"],
-    repo: "https://github.com/Ayushkumar1224/network-labs",
+    repo: "https://github.com/Ayushkumar1224/",
     demo: "",
   },
   {
