@@ -1,7 +1,7 @@
 import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { PROFILE_IMAGE } from "src/data/personal.js";
+import { personal, PROFILE_IMAGE } from "@/data/personal";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -43,9 +43,12 @@ export default function Sidebar() {
         {/* Profile Image */}
         <img
           src={PROFILE_IMAGE}
-          alt="Ayush Patel"
-          className="w-14 h-14 rounded-full border border-blue-500 object-cover shadow-lg"
+          alt={personal.name}
+          className="w-12 h-12 rounded-full border-2 border-blue-500 object-cover"
         />
+
+        {/* Name */}
+        <p className="text-white mt-2 text-center text-sm">{personal.name}</p>
 
         {/* Navigation */}
         <nav className="mt-10 flex flex-col gap-8">
@@ -56,7 +59,7 @@ export default function Sidebar() {
               className="group flex flex-col items-center gap-1 text-blue-300 hover:text-white transition"
               whileHover={{ scale: 1.15 }}
             >
-              <span className="">{nav.icon}</span>
+              {nav.icon}
               <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">
                 {nav.label}
               </span>
@@ -65,7 +68,7 @@ export default function Sidebar() {
 
           {/* Resume */}
           <motion.a
-            href="src\IT_Support Resume.pdf"
+            href="/IT_Support Resume.pdf" // put the PDF in public folder
             target="_blank"
             className="group flex flex-col items-center gap-1 text-blue-400 hover:text-white transition"
             whileHover={{ scale: 1.15 }}

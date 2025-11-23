@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { PROFILE_IMAGE, personal } from "../../data/personal";
+import { PROFILE_IMAGE, personal } from "@/data/personal";
 
 export default function Hero() {
   return (
@@ -21,7 +21,6 @@ export default function Hero() {
       >
         <h1 className="text-5xl font-extrabold text-white">{personal.name}</h1>
         <p className="text-blue-300 mt-2 text-xl">{personal.title}</p>
-
         <p className="mt-5 text-blue-200 max-w-xl">{personal.bio}</p>
 
         <a
