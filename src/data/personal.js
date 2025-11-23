@@ -1,7 +1,6 @@
 // src/data/personal.js
-import profileImg from "images/Profile.webp";
 
-export const PROFILE_IMAGE = profileImg;
+export const PROFILE_IMAGE = "/ayush.github.io/profile.webp";
 
 export const personal = {
   name: "Ayush Patel",
