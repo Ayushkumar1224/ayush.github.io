@@ -1,35 +1,97 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { PROFILE_IMAGE, personal } from "@/data/personal";
+import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
+import { personal, PROFILE_IMAGE } from "../../data/personal";
 
-export default function Hero() {
+export default function Sidebar() {
+  const [open, setOpen] = useState(false); // Mobile toggle
+  const [hover, setHover] = useState(false); // Desktop hover
+
+  const navItems = [
+    { id: 1, label: "Home", icon: <Home size={22} />, href: "/home" },
+    { id: 2, label: "About", icon: <User size={22} />, href: "/about" },
+    {
+      id: 3,
+      label: "Projects",
+      icon: <FolderGit2 size={22} />,
+      href: "/projects",
+    },
+    { id: 4, label: "Contact", icon: <Phone size={22} />, href: "/contact" },
+  ];
+
   return (
-    <div className="flex flex-col md:flex-row items-center gap-10 w-full">
-      <motion.img
-        src={PROFILE_IMAGE}
-        alt={personal.name}
-        className="w-48 h-48 rounded-full border-4 border-blue-500 shadow-xl object-cover"
-        initial={{ scale: 0.7, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.7 }}
-      />
-
-      <motion.div
-        initial={{ x: 40, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7 }}
-        className="text-left"
+    <>
+      {/* Mobile Toggle Button */}
+      <button
+        className="fixed top-5 left-5 z-[999] p-2 bg-blue-600 rounded-lg text-white md:hidden"
+        onClick={() => setOpen(!open)}
       >
-        <h1 className="text-5xl font-extrabold text-white">{personal.name}</h1>
-        <p className="text-blue-300 mt-2 text-xl">{personal.title}</p>
-        <p className="mt-5 text-blue-200 max-w-xl">{personal.bio}</p>
+        <Menu size={26} />
+      </button>
 
-        <a
-          href="#projects"
-          className="mt-6 inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-xl shadow-lg text-white font-medium"
-        >
-          View My Work
-        </a>
-      </motion.div>
-    </div>
+      {/* Sidebar */}
+      <motion.aside
+        initial={{ x: -80, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        className={`
+          fixed top-0 left-0 h-full bg-[#0a0f1f] border-r border-blue-700/40
+          flex flex-col items-center py-8 z-[998]
+          transform transition-transform duration-300
+          ${open ? "translate-x-0 w-64" : "-translate-x-20 w-20 md:w-20"}
+          ${hover ? "md:w-64" : "md:w-20"}
+        `}
+      >
+        {/* Profile Image */}
+        <img
+          src={PROFILE_IMAGE}
+          alt={personal.name}
+          className="w-14 h-14 rounded-full border border-blue-500 object-cover shadow-lg mb-10"
+        />
+
+        {/* Navigation */}
+        <nav className="flex flex-col gap-6 w-full px-4">
+          {navItems.map((nav) => (
+            <motion.div key={nav.id} whileHover={{ scale: 1.05 }}>
+              <Link
+                to={nav.href}
+                className="flex items-center gap-4 text-blue-300 hover:text-white transition"
+                onClick={() => setOpen(false)}
+              >
+                <span>{nav.icon}</span>
+                <span
+                  className={`text-sm font-medium whitespace-nowrap transition-opacity duration-300 ${
+                    hover || open ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  {nav.label}
+                </span>
+              </Link>
+            </motion.div>
+          ))}
+
+          {/* Resume */}
+          <motion.div whileHover={{ scale: 1.05 }} className="mt-6">
+            <a
+              href="public/IT_Support Resume.pdf"
+              target="_blank"
+              className="flex items-center gap-4 text-blue-400 hover:text-white transition"
+            >
+              <FileText size={22} />
+              <span
+                className={`text-sm font-medium whitespace-nowrap transition-opacity duration-300 ${
+                  hover || open ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                Resume
+              </span>
+            </a>
+          </motion.div>
+        </nav>
+      </motion.aside>
+    </>
   );
 }

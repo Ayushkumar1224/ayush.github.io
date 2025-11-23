@@ -1,13 +1,24 @@
-import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
+import {
+  Home as HomeIcon,
+  User,
+  FolderGit2,
+  Phone,
+  FileText,
+  Menu,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { personal, PROFILE_IMAGE } from "@/data/personal";
+import { personal, PROFILE_IMAGE } from "../../data/personal";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Projects from "../pages/Projects";
+import Contact from "../pages/Contact";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   const navItems = [
-    { id: 1, label: "Home", icon: <Home size={22} />, href: "#home" },
+    { id: 1, label: "Home", icon: <HomeIcon size={22} />, href: "#home" },
     { id: 2, label: "About", icon: <User size={22} />, href: "#about" },
     {
       id: 3,
@@ -20,7 +31,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Toggle Button */}
       <button
         className="fixed top-5 left-5 z-[999] p-2 bg-blue-600 rounded-lg text-white md:hidden"
         onClick={() => setOpen(!open)}
@@ -28,29 +38,21 @@ export default function Sidebar() {
         <Menu size={26} />
       </button>
 
-      {/* Sidebar Container */}
       <motion.aside
         initial={{ x: -80, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`
-          fixed top-0 left-0 h-full w-20 bg-[#0a0f1f] border-r border-blue-700/40 
-          flex flex-col items-center py-8 z-[998]
-          ${open ? "translate-x-0" : "-translate-x-24 md:translate-x-0"}
-          transition-all duration-300
-        `}
+        className={`fixed top-0 left-0 h-full w-20 bg-[#0a0f1f] border-r border-blue-700/40 flex flex-col items-center py-8 z-[998]
+          ${
+            open ? "translate-x-0" : "-translate-x-24 md:translate-x-0"
+          } transition-all duration-300`}
       >
-        {/* Profile Image */}
         <img
           src={PROFILE_IMAGE}
           alt={personal.name}
-          className="w-12 h-12 rounded-full border-2 border-blue-500 object-cover"
+          className="w-14 h-14 rounded-full border border-blue-500 object-cover shadow-lg"
         />
 
-        {/* Name */}
-        <p className="text-white mt-2 text-center text-sm">{personal.name}</p>
-
-        {/* Navigation */}
         <nav className="mt-10 flex flex-col gap-8">
           {navItems.map((nav) => (
             <motion.a
@@ -59,16 +61,15 @@ export default function Sidebar() {
               className="group flex flex-col items-center gap-1 text-blue-300 hover:text-white transition"
               whileHover={{ scale: 1.15 }}
             >
-              {nav.icon}
+              <span>{nav.icon}</span>
               <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">
                 {nav.label}
               </span>
             </motion.a>
           ))}
 
-          {/* Resume */}
           <motion.a
-            href="/IT_Support Resume.pdf" // put the PDF in public folder
+            href="/IT_Support Resume.pdf"
             target="_blank"
             className="group flex flex-col items-center gap-1 text-blue-400 hover:text-white transition"
             whileHover={{ scale: 1.15 }}
