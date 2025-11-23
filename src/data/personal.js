@@ -1,6 +1,6 @@
 // src/data/personal.js
 
-export const PROFILE_IMAGE = "/ayush.github.io/profile.webp";
+export const PROFILE_IMAGE = "/profile.webp"; // just the URL string
 
 export const personal = {
   name: "Ayush Patel",

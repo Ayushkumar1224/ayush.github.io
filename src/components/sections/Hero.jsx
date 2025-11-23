@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { PROFILE_IMAGE } from "../../data/personal";
+import { PROFILE_IMAGE, personal } from "../../data/personal";
 
 export default function Hero() {
   return (
     <div className="flex flex-col md:flex-row items-center gap-10 w-full">
       <motion.img
         src={PROFILE_IMAGE}
-        alt="Ayush Patel"
+        alt={personal.name}
         className="w-48 h-48 rounded-full border-4 border-blue-500 shadow-xl object-cover"
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -19,16 +19,10 @@ export default function Hero() {
         transition={{ duration: 0.7 }}
         className="text-left"
       >
-        <h1 className="text-5xl font-extrabold text-white">Ayush Patel</h1>
-        <p className="text-blue-300 mt-2 text-xl">
-          IT Specialist • Networking • Cloud • Automation
-        </p>
+        <h1 className="text-5xl font-extrabold text-white">{personal.name}</h1>
+        <p className="text-blue-300 mt-2 text-xl">{personal.title}</p>
 
-        <p className="mt-5 text-blue-200 max-w-xl">
-          Passionate about building secure, automated and scalable IT systems. I
-          love working on networking, system administration, cloud, DevOps and
-          modern tooling.
-        </p>
+        <p className="mt-5 text-blue-200 max-w-xl">{personal.bio}</p>
 
         <a
           href="#projects"
