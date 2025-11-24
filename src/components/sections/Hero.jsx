@@ -1,97 +1,63 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
-import { personal, PROFILE_IMAGE } from "../../data/personal";
+import HeroCard from "../components/sections/HeroCard"; // adjust path if needed
 
-export default function Sidebar() {
-  const [open, setOpen] = useState(false); // Mobile toggle
-  const [hover, setHover] = useState(false); // Desktop hover
-
-  const navItems = [
-    { id: 1, label: "Home", icon: <Home size={22} />, href: "/home" },
-    { id: 2, label: "About", icon: <User size={22} />, href: "/about" },
-    {
-      id: 3,
-      label: "Projects",
-      icon: <FolderGit2 size={22} />,
-      href: "/projects",
-    },
-    { id: 4, label: "Contact", icon: <Phone size={22} />, href: "/contact" },
-  ];
-
+function FloatingShapes() {
   return (
     <>
-      {/* Mobile Toggle Button */}
-      <button
-        className="fixed top-5 left-5 z-[999] p-2 bg-blue-600 rounded-lg text-white md:hidden"
-        onClick={() => setOpen(!open)}
-      >
-        <Menu size={26} />
-      </button>
-
-      {/* Sidebar */}
-      <motion.aside
-        initial={{ x: -80, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        className={`
-          fixed top-0 left-0 h-full bg-[#0a0f1f] border-r border-blue-700/40
-          flex flex-col items-center py-8 z-[998]
-          transform transition-transform duration-300
-          ${open ? "translate-x-0 w-64" : "-translate-x-20 w-20 md:w-20"}
-          ${hover ? "md:w-64" : "md:w-20"}
-        `}
-      >
-        {/* Profile Image */}
-        <img
-          src={PROFILE_IMAGE}
-          alt={personal.name}
-          className="w-14 h-14 rounded-full border border-blue-500 object-cover shadow-lg mb-10"
-        />
-
-        {/* Navigation */}
-        <nav className="flex flex-col gap-6 w-full px-4">
-          {navItems.map((nav) => (
-            <motion.div key={nav.id} whileHover={{ scale: 1.05 }}>
-              <Link
-                to={nav.href}
-                className="flex items-center gap-4 text-blue-300 hover:text-white transition"
-                onClick={() => setOpen(false)}
-              >
-                <span>{nav.icon}</span>
-                <span
-                  className={`text-sm font-medium whitespace-nowrap transition-opacity duration-300 ${
-                    hover || open ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  {nav.label}
-                </span>
-              </Link>
-            </motion.div>
-          ))}
-
-          {/* Resume */}
-          <motion.div whileHover={{ scale: 1.05 }} className="mt-6">
-            <a
-              href="public/IT_Support Resume.pdf"
-              target="_blank"
-              className="flex items-center gap-4 text-blue-400 hover:text-white transition"
-            >
-              <FileText size={22} />
-              <span
-                className={`text-sm font-medium whitespace-nowrap transition-opacity duration-300 ${
-                  hover || open ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                Resume
-              </span>
-            </a>
-          </motion.div>
-        </nav>
-      </motion.aside>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.9 }}
+        transition={{ duration: 1 }}
+        className="floating"
+        style={{
+          width: 260,
+          height: 260,
+          left: 80,
+          top: 40,
+          background: "rgba(14,165,233,0.08)",
+        }}
+      ></motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.65 }}
+        transition={{ delay: 0.2, duration: 1 }}
+        className="floating"
+        style={{
+          width: 160,
+          height: 160,
+          right: 120,
+          top: 120,
+          background: "rgba(6,95,155,0.14)",
+        }}
+      ></motion.div>
     </>
+  );
+}
+
+export default function Hero() {
+  return (
+    <section className="relative w-full flex flex-col items-start justify-center min-h-screen px-10">
+      {/* Floating shapes */}
+      <FloatingShapes />
+
+      {/* Intro text */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-3xl"
+      >
+        <h1 className="text-4xl font-bold text-white">Hi — I'm Ayush</h1>
+        <p className="text-gray-300 mt-2 text-lg">
+          I build infrastructure projects: networking, systems administration,
+          cloud, and home lab automation.
+        </p>
+      </motion.div>
+
+      {/* Hero cards */}
+      <div className="mt-8 w-full">
+        <HeroCard />
+      </div>
+    </section>
   );
 }

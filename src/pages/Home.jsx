@@ -39,8 +39,9 @@ function FloatingShapes() {
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main id="home" className="relative">
       <FloatingShapes />
+
       <section className="py-10">
         <motion.div
           initial={{ opacity: 0, y: 10 }}

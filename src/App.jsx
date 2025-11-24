@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Sidebar from "./components/layout/Sidebar";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/AboutSection";
@@ -5,6 +6,11 @@ import Projects from "./components/sections/ProjectCard";
 import Contact from "./components/sections/ContactForm";
 
 export default function App() {
+  // Optional: smooth scrolling polyfill for older browsers
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+  }, []);
+
   return (
     <div className="flex">
       {/* Sidebar */}
