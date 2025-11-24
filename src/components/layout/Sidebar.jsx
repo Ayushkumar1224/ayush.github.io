@@ -9,10 +9,6 @@ import {
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { personal, PROFILE_IMAGE } from "../../data/personal";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Projects from "../pages/Projects";
-import Contact from "../pages/Contact";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -43,9 +39,8 @@ export default function Sidebar() {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 h-full w-20 bg-[#0a0f1f] border-r border-blue-700/40 flex flex-col items-center py-8 z-[998]
-          ${
-            open ? "translate-x-0" : "-translate-x-24 md:translate-x-0"
-          } transition-all duration-300`}
+        ${open ? "translate-x-0" : "-translate-x-24 md:translate-x-0"}
+        transition-all duration-300`}
       >
         <img
           src={PROFILE_IMAGE}
