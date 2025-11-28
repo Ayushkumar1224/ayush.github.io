@@ -17,7 +17,7 @@ export default function App() {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="ml-20 w-full min-h-screen bg-[#030712] text-white">
+      <main className="ml-20 md:ml-64 w-full min-h-screen bg-[#030712] text-white">
         {/* Home Section */}
         <section id="home" className="min-h-screen flex items-center px-10">
           <Hero />

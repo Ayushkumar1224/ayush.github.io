@@ -1,102 +1,83 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import { motion } from "framer-motion";
-import {
-  Home as HomeIcon,
-  User,
-  FolderGit2,
-  Phone,
-  FileText,
-  Menu,
-} from "lucide-react";
-import { personal, PROFILE_IMAGE } from "../../data/personal";
+import { Home, User, FolderGit2, Phone, FileText, Menu } from "lucide-react";
+import { PROFILE_IMAGE } from "../../data/personal";
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(false); // Mobile toggle
-  const [hover, setHover] = useState(false); // Desktop hover
+  const [open, setOpen] = useState(false); // mobile toggle
 
-  const navItems = [
-    { id: 1, label: "Home", icon: <HomeIcon size={22} />, href: "#home" },
-    { id: 2, label: "About", icon: <User size={22} />, href: "#about" },
-    {
-      id: 3,
-      label: "Projects",
-      icon: <FolderGit2 size={22} />,
-      href: "#projects",
-    },
-    { id: 4, label: "Contact", icon: <Phone size={22} />, href: "#contact" },
+  const menuItems = [
+    { to: "home", label: "Home", icon: Home },
+    { to: "about", label: "About", icon: User },
+    { to: "projects", label: "Projects", icon: FolderGit2 },
+    { to: "contact", label: "Contact", icon: Phone },
+    { to: "resume", label: "Resume", icon: FileText, url: "/resume.pdf" },
   ];
 
   return (
     <>
-      {/* Mobile toggle button */}
+      {/* Mobile Toggle Button */}
       <button
-        className="fixed top-5 left-5 z-[999] p-2 bg-blue-600 rounded-lg text-white md:hidden"
+        className="md:hidden fixed top-4 left-4 z-[9999] bg-gray-800 p-2 rounded-lg"
         onClick={() => setOpen(!open)}
       >
-        <Menu size={26} />
+        <Menu size={22} className="text-white" />
       </button>
 
       {/* Sidebar */}
       <motion.aside
-        initial={{ x: -80, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        initial={{ x: -100 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.4 }}
         className={`
-          fixed top-0 left-0 h-full bg-[#0a0f1f] border-r border-blue-700/40
-          flex flex-col items-center py-8 z-[998]
-          transform transition-all duration-300
-          ${open ? "translate-x-0 w-64" : "-translate-x-20 w-20 md:w-20"}
-          ${hover ? "md:w-64" : "md:w-20"}
+          fixed top-0 left-0 h-full bg-[#0f172a] text-white z-[9998]
+          border-r border-gray-700 shadow-lg
+          flex flex-col items-center py-6
+          transition-all duration-300 ease-in-out
+          ${open ? "w-64" : "w-20 md:w-20 md:hover:w-64"}
         `}
       >
         {/* Profile Image */}
-        <img
+        <motion.img
           src={PROFILE_IMAGE}
-          alt={personal.name}
-          className="w-14 h-14 rounded-full border border-blue-500 object-cover shadow-lg mb-10"
+          alt="Profile"
+          className="w-14 h-14 rounded-full border border-gray-500 object-cover mt-4 mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
         />
 
-        {/* Navigation */}
-        <nav className="flex flex-col gap-6 w-full px-4">
-          {navItems.map((nav) => (
-            <motion.div key={nav.id} whileHover={{ scale: 1.05 }}>
+        {/* Navigation Links */}
+        <nav className="flex flex-col gap-4 w-full px-3">
+          {menuItems.map((item, index) => {
+            const Icon = item.icon;
+            return item.url ? (
               <a
-                href={nav.href}
-                className="flex items-center gap-4 text-blue-300 hover:text-white transition"
-                onClick={() => setOpen(false)} // Close mobile menu on click
+                key={index}
+                href={item.url}
+                target="_blank"
+                className="flex items-center gap-4 p-3 hover:bg-gray-700 rounded-xl transition"
               >
-                <span>{nav.icon}</span>
-                <span
-                  className={`text-sm font-medium transition-opacity duration-300 ${
-                    hover || open ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  {nav.label}
+                <Icon size={22} />
+                <span className="hidden md:inline-block text-sm font-medium whitespace-nowrap">
+                  {item.label}
                 </span>
               </a>
-            </motion.div>
-          ))}
-
-          {/* Resume */}
-          <motion.div whileHover={{ scale: 1.05 }} className="mt-6">
-            <a
-              href="/IT_Support Resume.pdf"
-              target="_blank"
-              className="flex items-center gap-4 text-blue-400 hover:text-white transition"
-            >
-              <FileText size={22} />
-              <span
-                className={`text-sm font-medium transition-opacity duration-300 ${
-                  hover || open ? "opacity-100" : "opacity-0"
-                }`}
+            ) : (
+              <Link
+                key={index}
+                to={item.to}
+                smooth={true}
+                duration={400}
+                className="flex items-center gap-4 p-3 hover:bg-gray-700 rounded-xl transition cursor-pointer"
               >
-                Resume
-              </span>
-            </a>
-          </motion.div>
+                <Icon size={22} />
+                <span className="hidden md:inline-block text-sm font-medium whitespace-nowrap">
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
         </nav>
       </motion.aside>
     </>
